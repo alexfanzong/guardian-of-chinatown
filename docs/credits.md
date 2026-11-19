@@ -4,6 +4,6 @@ Alex Fan led the game's design, gameplay architecture and art direction. AI tool
 
 The same [source-available license](../LICENSE) covers the original artwork. Commercial use and publishing modified artwork require separate written permission.
 
-The runtime uses React and Recharts. Development uses Vite and its React plugin. These packages retain their respective licenses; npm installs their license files with the pinned dependencies.
+The game uses React and Recharts. The static build includes the game's license in `LICENSE.txt` and the bundled dependencies' licenses in `THIRD-PARTY-NOTICES.txt`.
 
 Guardian of Chinatown is an independently created browser game.

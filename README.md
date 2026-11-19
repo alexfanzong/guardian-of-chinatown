@@ -53,7 +53,7 @@ React, TypeScript/JavaScript and Vite. A small probability model learns from rec
 
 ## Contributing
 
-Bug reports and pull requests are welcome. Include your browser, device and steps to reproduce a bug. Run `npm run check` before opening a pull request. Please avoid adding accounts, analytics or remote assets to the core game.
+Found a bug? Open an issue with your browser, device, and the steps that produced it. Ideas for improving the game are welcome in issues too.
 
 ## Credits and license
 
