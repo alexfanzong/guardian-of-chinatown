@@ -1,0 +1,48 @@
+Guardian of Chinatown Source-Available License 1.0
+
+Copyright (c) 2026 Alex Fan. All rights reserved except as expressly granted below.
+
+1. Scope
+These terms cover the original source code, documentation, data and artwork in
+this repository, to the extent the author holds rights in them. Third-party
+packages remain governed by their own licenses.
+
+2. Limited permission
+You may view the source and play, run, and privately copy the game for personal,
+non-commercial purposes. You may study and privately modify the source for
+personal, non-commercial learning. You may share unmodified copies for
+non-commercial purposes if you retain this license and the author's credit.
+
+3. Restrictions
+Without separate written permission from the author, you may not:
+(a) use the project or its original assets for commercial purposes, including
+    selling copies, charging for access, advertising-supported distribution,
+    or inclusion in a paid product or service; or
+(b) distribute, publish, or publicly deploy modified versions of the project
+    or its original assets, in whole or in part.
+
+Commercial use means use primarily intended for commercial advantage or
+monetary compensation. Private study permission does not grant permission
+to publish or distribute your modifications.
+
+4. Attribution and platform terms
+Retain the name Guardian of Chinatown, the credit to Alex Fan, and this license
+when sharing an unmodified copy. Do not imply the author's endorsement.
+These terms do not restrict rights that applicable law or the hosting
+platform's mandatory terms independently give you, including GitHub's
+applicable viewing and forking rights.
+
+5. Artwork and other rights
+Some artwork was generated with AI under the author's direction. No exclusive
+rights in purely AI-generated elements are asserted. No third-party trademark,
+personality, patent, or other rights are granted by this license.
+
+6. Disclaimer
+THE PROJECT IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR
+PURPOSE, AND NONINFRINGEMENT. TO THE EXTENT PERMITTED BY APPLICABLE LAW,
+THE AUTHOR IS NOT LIABLE FOR CLAIMS OR DAMAGES ARISING FROM USE OF THE PROJECT.
+
+This is a source-available license with non-commercial and no-modified-
+redistribution restrictions. It is not an OSI-approved open-source license.
+For other uses, obtain the author's separate written permission.

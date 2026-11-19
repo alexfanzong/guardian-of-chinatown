@@ -1,0 +1,147 @@
+{
+  "dataKind": "post-hoc exploration",
+  "calibration": [
+    {
+      "id": "all",
+      "label": "All six together",
+      "n": 384000,
+      "gap": 0.04242240679858334,
+      "verdict": "mixed"
+    },
+    {
+      "id": "switch40",
+      "label": "Switch side at 40",
+      "n": 64000,
+      "gap": 0.0032597323449684154,
+      "verdict": "close in these bins"
+    },
+    {
+      "id": "constant",
+      "label": "One fixed side",
+      "n": 64000,
+      "gap": 0.050461104123667014,
+      "verdict": "underconfident"
+    },
+    {
+      "id": "alternating",
+      "label": "Strict alternation",
+      "n": 64000,
+      "gap": 0.06483239238294385,
+      "verdict": "underconfident"
+    },
+    {
+      "id": "biased80",
+      "label": "Independent 80/20",
+      "n": 64000,
+      "gap": 0.06877818280018842,
+      "verdict": "mixed"
+    },
+    {
+      "id": "fair_iid",
+      "label": "Independent 50/50",
+      "n": 64000,
+      "gap": 0.1184748695755116,
+      "verdict": "overconfident"
+    },
+    {
+      "id": "period4",
+      "label": "Repeat LLRR",
+      "n": 64000,
+      "gap": 0.12021329365079368,
+      "verdict": "underconfident"
+    }
+  ],
+  "fairBins": [
+    {
+      "n": 26620,
+      "said": 0.5393327988052764,
+      "right": 0.5006761833208114
+    },
+    {
+      "n": 24351,
+      "said": 0.6341099003536913,
+      "right": 0.5015399778243194
+    },
+    {
+      "n": 9780,
+      "said": 0.7304112242909276,
+      "right": 0.5014314928425357
+    },
+    {
+      "n": 3173,
+      "said": 0.8243759955192932,
+      "right": 0.4903876457611094
+    },
+    {
+      "n": 76,
+      "said": 0.9075731286257602,
+      "right": 0.5657894736842105
+    }
+  ],
+  "exactFairFight": {
+    "tea": 0.731988787651062,
+    "elixir": 0.7346216216683388
+  },
+  "shortFights": {
+    "date": "2026-11-18",
+    "perStrategy": 4000,
+    "supply": "Steady Tea",
+    "rows": [
+      {
+        "id": "constant",
+        "label": "Always left",
+        "wins": 0,
+        "read": 0.9662002450007764,
+        "meanPunches": 14.48975,
+        "earlyWins": 0
+      },
+      {
+        "id": "alternating",
+        "label": "Alternate L, R",
+        "wins": 0,
+        "read": 0.7374145718386642,
+        "meanPunches": 18.98525,
+        "earlyWins": 0
+      },
+      {
+        "id": "period4",
+        "label": "Repeat L, L, R, R",
+        "wins": 2458,
+        "read": 0.4304947060971157,
+        "meanPunches": 16.434,
+        "earlyWins": 2458
+      },
+      {
+        "id": "fair_iid",
+        "label": "Independent fair coin",
+        "wins": 2887,
+        "read": 0.5003099578710323,
+        "meanPunches": 19.76075,
+        "earlyWins": 753
+      },
+      {
+        "id": "period6",
+        "label": "Repeat L, L, R, L, R, R",
+        "wins": 3659,
+        "read": 0.4378540355119797,
+        "meanPunches": 19.02175,
+        "earlyWins": 1058
+      },
+      {
+        "id": "reverseContinuation",
+        "label": "Reverse the last continuation",
+        "wins": 3993,
+        "read": 0.36598637382066485,
+        "meanPunches": 16.40225,
+        "earlyWins": 2146
+      }
+    ],
+    "llrrFirst16": 0.3694375,
+    "balance": {
+      "plain": 0.5,
+      "comboOnly": 0.5997214317321777,
+      "teaBreakEven": 0.5630313188766148,
+      "sevenHpTeaAdvantagePP": 0.0118255615234375
+    }
+  }
+}

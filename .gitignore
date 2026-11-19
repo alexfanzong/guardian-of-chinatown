@@ -1,0 +1,15 @@
+node_modules/
+dist/
+.vercel/
+.env
+.env.*
+!.env.example
+.DS_Store
+*.log
+coverage/
+.npm/
+tmp/
+backups/
+*.mp4
+*.mov
+*.webm

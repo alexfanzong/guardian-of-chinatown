@@ -1,0 +1,108 @@
+{
+  "title": "The sealed simulation",
+  "date": "2026-11-16",
+  "dataKind": "simulated",
+  "humanParticipants": 0,
+  "sequences": 6000,
+  "sequencesPerPolicy": 1000,
+  "turns": 80,
+  "warmup": 16,
+  "scoredPunches": 384000,
+  "studentPrior": "Independent fair random punches would be hardest to predict.",
+  "studentConfidence": null,
+  "evaluation": "Frozen algorithm; online updates from past punches; fixed 80-punch trials without health stopping or supply.",
+  "modelSha256": "f9cf829f750826af2da19e6282bd600f8973f02bbc6a14b50cdacc80039bcb8d",
+  "batchSha256": "0eac555dd984a236d2633ab3078766200740ca9cffcb6140a68cde5d0490d396",
+  "groups": [
+    {
+      "id": "constant",
+      "label": "One fixed side",
+      "model": 1,
+      "interval": [
+        1,
+        1
+      ],
+      "frequency": 1,
+      "coin": 0.50009375,
+      "modelLog10": -0.022488219133848037,
+      "frequencyLog10": -0.02233501799478085
+    },
+    {
+      "id": "alternating",
+      "label": "Strict alternation",
+      "model": 1,
+      "interval": [
+        1,
+        1
+      ],
+      "frequency": 0.4379375,
+      "coin": 0.500390625,
+      "modelLog10": -0.029153891406260814,
+      "frequencyLog10": -0.30323216910918405
+    },
+    {
+      "id": "period4",
+      "label": "Repeat LLRR",
+      "model": 1,
+      "interval": [
+        1,
+        1
+      ],
+      "frequency": 0.4511875,
+      "coin": 0.499671875,
+      "modelLog10": -0.055748844984513816,
+      "frequencyLog10": -0.30323216910918405
+    },
+    {
+      "id": "biased80",
+      "label": "Independent 80/20",
+      "model": 0.781109375,
+      "interval": [
+        0.7771234328513297,
+        0.7850953171486703
+      ],
+      "frequency": 0.801015625,
+      "coin": 0.499046875,
+      "modelLog10": -0.23329458403381173,
+      "frequencyLog10": -0.22314930375008565
+    },
+    {
+      "id": "switch40",
+      "label": "Switch side at 40",
+      "model": 0.9375,
+      "interval": [
+        0.9375,
+        0.9375
+      ],
+      "frequency": 0.74203125,
+      "coin": 0.500734375,
+      "modelLog10": -0.09816526965711517,
+      "frequencyLog10": -0.2198953312156695
+    },
+    {
+      "id": "fair_iid",
+      "label": "Independent 50/50",
+      "model": 0.5006875,
+      "interval": [
+        0.4968037783183716,
+        0.5045712216816284
+      ],
+      "frequency": 0.502046875,
+      "coin": 0.500640625,
+      "modelLog10": -0.3228992444363279,
+      "frequencyLog10": -0.30790857194875804
+    }
+  ],
+  "switchMisses": [
+    41,
+    42,
+    43,
+    44
+  ],
+  "switchRecoveryTurn": 45,
+  "verification": {
+    "recordsRecomputed": 480000,
+    "sequenceSummariesRecomputed": 6000,
+    "separateReview": true
+  }
+}
