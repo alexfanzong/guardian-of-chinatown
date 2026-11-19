@@ -4,9 +4,9 @@ English · [简体中文](README.zh-CN.md)
 
 A two-button arcade fighter against a monster that learns your habits.
 
-**[Play in your browser](https://guardian-of-chinatown-alexfanzong.vercel.app)**
+**[Play in your browser](https://alexfanzong.github.io/guardian-of-chinatown/)** · [Vercel mirror](https://guardian-of-chinatown-alexfanzong.vercel.app/) · [Download for offline play](https://alexfanzong.github.io/guardian-of-chinatown/downloads/Guardian-of-Chinatown-offline.zip)
 
-[![Guardian of Chinatown: a martial-arts heroine facing a purple monster on a lantern-lit street](docs/media/cover.png)](https://guardian-of-chinatown-alexfanzong.vercel.app)
+[![Guardian of Chinatown: a martial-arts heroine facing a purple monster on a lantern-lit street](docs/media/cover.png)](https://alexfanzong.github.io/guardian-of-chinatown/)
 
 Chinatown's lanterns are going out. Choose left or right, break the monster's reads, and get the street back.
 

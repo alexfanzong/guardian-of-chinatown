@@ -4,9 +4,9 @@
 
 只用左右两拳，挑战一个会学习你出招习惯的怪物。
 
-**[打开网页，直接玩](https://guardian-of-chinatown-alexfanzong.vercel.app)**
+**[打开网页，直接玩](https://alexfanzong.github.io/guardian-of-chinatown/)** · [Vercel 备用入口](https://guardian-of-chinatown-alexfanzong.vercel.app/) · [下载离线试玩包](https://alexfanzong.github.io/guardian-of-chinatown/downloads/Guardian-of-Chinatown-offline.zip)
 
-[![青衣女侠与读心怪在唐人街对战](docs/media/cover.png)](https://guardian-of-chinatown-alexfanzong.vercel.app)
+[![青衣女侠与读心怪在唐人街对战](docs/media/cover.png)](https://alexfanzong.github.io/guardian-of-chinatown/)
 
 唐人街的灯笼正在熄灭。选择左拳或右拳，骗过怪物的预判，把街坊的生活赢回来。
 
