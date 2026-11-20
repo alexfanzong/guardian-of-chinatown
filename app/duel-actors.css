@@ -1,0 +1,163 @@
+.duel-actors {
+  --duel-span: 36%;
+  --duel-left: 15%;
+  --duel-right: 15.5%;
+  --duel-stride: 1%;
+  --duel-edge-stride: var(--duel-stride);
+  --duel-floor: var(--fighter-ground, 11.5%);
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
+}
+
+.duel-actors > .duel-fighter.fighter {
+  position: absolute;
+  width: var(--duel-span);
+  aspect-ratio: 340 / 315;
+  bottom: var(--duel-floor);
+  pointer-events: none;
+  transform-origin: 50% 97%;
+}
+.duel-actors > .hero-fighter { left: var(--duel-left); z-index: 2; }
+.duel-actors > .boss-fighter { right: var(--duel-right); z-index: 1; }
+
+/* v1 animates the fighter slot. The new choreography animates bodies and their grounded shadows separately. */
+.duel-actors:not([data-celebrating]) > .duel-fighter.fighter:is(.hero-fighter, .boss-fighter) {
+  animation: none;
+  transform: none;
+}
+.duel-actors[data-move="victory"]:not([data-celebrating]) > .boss-fighter { opacity: 0; }
+
+.duel-actors .duel-body-track,
+.duel-actors .duel-ground-track,
+.duel-actors .duel-drawing {
+  position: absolute;
+  inset: 0;
+  transform-origin: 50% 97%;
+}
+.duel-actors .duel-body-track {
+  z-index: 1;
+  transform: var(--duel-body-still);
+  animation: duel-body-path var(--duel-duration) cubic-bezier(.24,.7,.32,1) both;
+}
+.duel-actors .duel-ground-track {
+  transform: var(--duel-shadow-still);
+  opacity: var(--duel-alpha-still);
+  animation: duel-shadow-path var(--duel-duration) cubic-bezier(.24,.7,.32,1) both;
+}
+.duel-actors .ground-shadow {
+  left: 21%;
+  bottom: .5%;
+  width: 58%;
+  height: 7%;
+  background: #1010209c;
+  border-radius: 50%;
+  filter: blur(1.6px);
+}
+.duel-actors .duel-fighter .duel-ink.sprite {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  image-rendering: auto;
+  background-image: url("./duel-poses.webp");
+  background-size: 400% 400%;
+  background-repeat: no-repeat;
+  background-position: var(--duel-tile-still);
+  transform: scaleX(var(--duel-facing-still));
+  animation: duel-ink-cels var(--duel-duration) steps(1, end) both;
+}
+.duel-actors .victory-sprite { display: block; object-position: center bottom; }
+.duel-actors[data-beat="ready"] .hero-fighter .duel-drawing,
+.duel-actors[data-move="rest"][data-beat="ready"] .boss-fighter .duel-drawing {
+  animation: duel-stance 1.6s ease-in-out infinite;
+}
+.duel-actors[data-move="rest"][data-beat="ready"] .boss-fighter .duel-drawing { animation-delay: -.65s; }
+
+.duel-actors .duel-ink-overlay {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+  pointer-events: none;
+}
+.duel-actors .duel-trail { z-index: 0; opacity: .88; }
+.duel-actors .duel-contact {
+  z-index: 3;
+  color: #ffd067;
+  filter: drop-shadow(0 1px 1px #35253d);
+}
+.duel-actors .duel-contact[data-ink="block"] { color: #b3f1f2; }
+.duel-actors .duel-contact[data-ink="counter"] { color: #ffa3c1; }
+.duel-actors .duel-contact[data-ink="pounce"] {
+  color: #ffa3a4;
+  animation: duel-pounce-contact var(--duel-duration) steps(1,end) both;
+}
+.duel-actors .duel-eye-cue { z-index: 3; }
+.duel-actors .duel-guard-seal {
+  position: absolute;
+  z-index: 3;
+  top: 22%;
+  left: 1%;
+  width: 19%;
+  filter: drop-shadow(1px 2px #1a1432);
+}
+.duel-actors .duel-guard-seal[data-side="R"] {
+  left: auto;
+  right: 1%;
+  transform: scaleX(-1);
+}
+
+@keyframes duel-body-path {
+  0% { transform: var(--duel-body-start); }
+  36% { transform: var(--duel-body-drive); }
+  67% { transform: var(--duel-body-land); }
+  100% { transform: var(--duel-body-end); }
+}
+@keyframes duel-shadow-path {
+  0% { transform: var(--duel-shadow-start); opacity: var(--duel-alpha-start); }
+  36% { transform: var(--duel-shadow-drive); opacity: var(--duel-alpha-drive); }
+  67% { transform: var(--duel-shadow-land); opacity: var(--duel-alpha-land); }
+  100% { transform: var(--duel-shadow-end); opacity: var(--duel-alpha-end); }
+}
+@keyframes duel-ink-cels {
+  0% { background-position: var(--duel-tile-start); transform: scaleX(var(--duel-facing-start)); }
+  36% { background-position: var(--duel-tile-drive); transform: scaleX(var(--duel-facing-drive)); }
+  67% { background-position: var(--duel-tile-land); transform: scaleX(var(--duel-facing-land)); }
+  100% { background-position: var(--duel-tile-end); transform: scaleX(var(--duel-facing-end)); }
+}
+@keyframes duel-stance {
+  0%, 100% { transform: scaleY(1); }
+  50% { transform: scaleY(.984); }
+}
+@keyframes duel-pounce-contact {
+  0% { opacity: 0; }
+  67% { opacity: 1; }
+  94%, 100% { opacity: 0; }
+}
+.duel-actors[data-paused] * { animation-play-state: paused !important; }
+.duel-actors[data-reduced] :is(.duel-body-track, .duel-ground-track, .duel-drawing, .duel-ink.sprite, .duel-contact[data-ink="pounce"]) {
+  animation: none !important;
+}
+.v2-arena.exchange.burst:has(.duel-actors[data-reduced]) { animation: none !important; }
+
+@media (max-width: 760px) and (orientation: portrait) {
+  .duel-actors {
+    --duel-span: 49%;
+    --duel-left: 6.5%;
+    --duel-right: 8%;
+    --duel-stride: .8%;
+    --duel-edge-stride: .48%;
+    --duel-floor: var(--fighter-ground, 23%);
+  }
+  .duel-actors[data-move="pounce"] .boss-fighter { --duel-stride: .58%; }
+  .duel-actors .duel-guard-seal { width: 21%; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .duel-actors :is(.duel-body-track, .duel-ground-track, .duel-drawing, .duel-ink.sprite, .duel-contact[data-ink="pounce"]) {
+    animation: none !important;
+  }
+}

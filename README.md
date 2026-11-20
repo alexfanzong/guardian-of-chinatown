@@ -4,6 +4,8 @@ English · [简体中文](README.zh-CN.md)
 
 A two-button arcade fighter against a monster that learns your habits.
 
+**Version 2.0** adds an animated comic opening, palm guards, timed pounces, and advice drawn from your fight.
+
 **[Play in your browser](https://alexfanzong.github.io/guardian-of-chinatown/)** · [Vercel mirror](https://guardian-of-chinatown-alexfanzong.vercel.app/) · [Download for offline play](https://alexfanzong.github.io/guardian-of-chinatown/downloads/Guardian-of-Chinatown-offline.zip)
 
 [![Guardian of Chinatown: a martial-arts heroine facing a purple monster on a lantern-lit street](docs/media/cover.png)](https://alexfanzong.github.io/guardian-of-chinatown/)
@@ -18,13 +20,15 @@ Chinatown's lanterns are going out. Choose left or right, break the monster's re
 | Right punch | **D** or **→** | Tap the right half |
 | Pause | **Esc** | Tap the pause button |
 
-The monster commits to a guess before you punch. Fool it three times in a row for a **Mind Break** bonus hit. At half health, choose guaranteed healing from tea or take a chance with the elixir. Both fighters start with 12 HP. A rematch clears the monster's memory.
+After the four-panel comic, the monster commits to a guess before each punch. A raised palm gives away the hand it guards. Strike with your other hand. When the creature crouches for a pounce, wait until its third eye opens, then tap either side to dodge. The first lesson is free. After learning the dodge, an early press or a miss costs one heart. Fool it three times in a row for a **Mind Break** bonus hit. At half health, choose guaranteed healing from tea or take a chance with the elixir. Both fighters start with 12 HP. A rematch clears the monster's memory.
 
 Play at your own pace. Sound is optional; the pause menu also has a reduced-motion setting.
 
 ## Try a different rhythm
 
-Alternate hands. Repeat a short loop. Change your pattern halfway through. After the fight, **See the reads** shows what the monster predicted before each punch.
+Alternate hands. Repeat a short loop. Change your pattern halfway through. After a fight the innkeeper offers one tip based on what you did. Select **Fight log** to see each exchange and the monster's confidence before your punch. The opening and game start in English; switch to Chinese from the pause menu after entering the street. **Patient dodge** holds the dodge cue open until you press.
+
+The first palm guard teaches you to hit the open side. Later guards leave you to read the pose and fist mark. Guards appear at punches 4, 16, 28, and so on; pounces come after every six punches.
 
 No account, download, or API key is needed to play. The game runs in your browser, with all game assets bundled locally. There is no gameplay telemetry or saved player history.
 
@@ -49,7 +53,7 @@ The static build works on Vercel and other static hosts. No backend or environme
 
 ## Under the hood
 
-React, TypeScript/JavaScript and Vite. A small probability model learns from recent punches. The optional in-game **The experiment** page has the simulation results; [the short technical note](docs/research.md) explains their scope.
+React and Vite power the game. The monster learns from recent punches. The [technical note](docs/research.md) preserves measurements from the 1.0 ruleset.
 
 ## Contributing
 

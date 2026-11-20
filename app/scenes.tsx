@@ -1,24 +1,6 @@
 import {useEffect, useRef} from 'react';
 
-const STORY = [
-  {chapter:'CHINATOWN · AFTER DARK',title:'The lanterns are fading.',text:'A creature has claimed the street. Every challenger leaves defeated. The shops are closing early.'},
-  {chapter:'THE MIND READER',title:'It knows your old tricks.',text:'A repeated step. The same familiar punch. It watches your habits, then moves as if it knows your mind.'},
-  {chapter:'TONIGHT, YOU STEP FORWARD',title:'Give them their street back.',text:'Break its predictions. Keep it guessing. The people of Chinatown are counting on you.'},
-];
-
-export function Story({step,onNext,onSkip,onHelp,onResearch}) {
-  const next=useRef(null);
-  useEffect(()=>{next.current?.focus({preventScroll:true});},[step]);
-  const beat=STORY[step];
-  return <div className={`story-overlay story-beat-${step}`}>
-    <button className="story-skip text-button" onClick={onSkip}>Skip intro ↗</button>
-    <div className="story-heading"><p className="eyebrow">GUARDIAN OF CHINATOWN</p><h1>{beat.title}</h1></div>
-    <div className="story-caption" key={step}><p className="eyebrow">{beat.chapter}</p><p className="story-copy">{beat.text}</p>
-      <div className="story-actions"><span className="story-progress" aria-label={`Story ${step+1} of 3`}>{[0,1,2].map(i=><i key={i} className={i===step?'current':''}/>)}</span><button className="pixel-button" onClick={onNext} ref={next}>{step===2?'DEFEND THE STREET':'CONTINUE'} <span aria-hidden="true">→</span></button></div>
-      <div className="story-extra"><button className="text-button story-help" onClick={onHelp}>A / D or tap either side · How to play</button><button className="text-button story-help" onClick={onResearch}>The experiment ↗</button></div>
-    </div>
-  </div>;
-}
+import {localized} from './language.js';
 
 function ItemIcon({kind}) {
   return <svg className="item-icon" viewBox="0 0 80 80" aria-hidden="true" shapeRendering="crispEdges">
@@ -38,39 +20,49 @@ function ItemIcon({kind}) {
   </svg>;
 }
 
-export function Supply({match,onChoose,onContinue}) {
+export function Supply({match,onChoose,onContinue,lang,onLang}) {
+  const t=(en,zh)=>localized(lang,en,zh);
   const box=useRef(null);
-  useEffect(()=>{box.current?.querySelector('button')?.focus({preventScroll:true});},[match.phase]);
+  useEffect(()=>{box.current?.querySelector('[data-primary]')?.focus({preventScroll:true});},[match.phase]);
   function keepFocus(event) {
-    if(event.repeat&&['Enter',' '].includes(event.key)){event.preventDefault();return;}
+    if(event.repeat && ['Enter',' '].includes(event.key)) {event.preventDefault(); return;}
     if(event.key!=='Tab')return;
     const buttons=Array.from(box.current.querySelectorAll('button:not([disabled])'));
     const first=buttons[0],last=buttons[buttons.length-1];
-    if(event.shiftKey&&document.activeElement===first){event.preventDefault();last.focus();}
-    else if(!event.shiftKey&&document.activeElement===last){event.preventDefault();first.focus();}
+    if(event.shiftKey && document.activeElement===first){event.preventDefault();last.focus();}
+    if(!event.shiftKey && document.activeElement===last){event.preventDefault();first.focus();}
   }
   const choosing=match.phase==='supply';
   return <div className="supply-overlay" ref={box} role="dialog" aria-modal="true" aria-labelledby="supply-title" onKeyDown={keepFocus}>
     <div className="supply-content">
-      <p className="eyebrow">A GIFT FROM THE INNKEEPER</p><h2 id="supply-title">A little help from Chinatown.</h2>
-      {choosing?<>
-        <p className="supply-story">A red-silk pouch lands at your feet.<br/>“Choose wisely. We only have one.”</p>
+      <button className="text-button supply-lang" lang={lang==='en'?'zh-CN':'en'} onClick={()=>onLang(lang==='en'?'zh':'en')} aria-label={t('Switch to Chinese','切换到英文')}>{t('中文','EN')}</button>
+      <p className="eyebrow">{t('A GIFT FROM THE INNKEEPER','青云客栈')}</p>
+      <h2 id="supply-title">{t('A little help from Chinatown.','喝茶，还是开葫芦？')}</h2>
+      {choosing ? <>
+        <p className="supply-story">{t('A red-silk pouch lands at your feet.','掌柜往街心递来一个红布包。')}<br/>{t('“Choose wisely. We only have one.”','“挑一样吧，就这么多了。”')}</p>
         <div className="supply-choices">
-          <button onClick={()=>onChoose('safe')} className="supply-choice safe-tea" aria-label="Steady Tea — restore 2 HP"><ItemIcon kind="tea"/><strong>STEADY TEA</strong><span>Restore 2 HP</span><small>Guaranteed</small></button>
-          <button onClick={()=>onChoose('risky')} className="supply-choice lucky-elixir" aria-label="Lucky Elixir — 50% chance of 5 HP"><ItemIcon kind="elixir"/><strong>LUCKY ELIXIR</strong><span>50%: +5 HP</span><small>50%: +0 HP</small></button>
-        </div><p className="supply-footnote">Once per fight. Your choice. No punches while you decide.</p>
-      </>:<div className="supply-reveal" role="status"><ItemIcon kind={match.supply.choice==='safe'?'tea':'elixir'}/><strong className="heal-number">+{match.supply.heal} HP</strong><p>{match.supply.choice==='safe'?'A warm cup. A steady hand.':match.supply.heal>0?'A little luck from Lantern Street.':'Just water this time. That was the risk.'}</p><button className="pixel-button" onClick={onContinue}>BACK TO THE FIGHT →</button></div>}
+          <button data-primary onClick={()=>onChoose('safe')} className="supply-choice safe-tea" aria-label={t('Steady Tea: restore 2 HP','青瓷茶，稳回两格血')}><ItemIcon kind="tea"/><strong>{t('STEADY TEA','青瓷茶')}</strong><span>{t('Restore 2 HP','回 2 格血')}</span><small>{t('Guaranteed','一口就回')}</small></button>
+          <button onClick={()=>onChoose('risky')} className="supply-choice lucky-elixir" aria-label={t('Lucky Elixir: half the time it restores 5 HP','药葫芦，一半机会回五格血')}><ItemIcon kind="elixir"/><strong>{t('LUCKY ELIXIR','药葫芦')}</strong><span>{t('Half the time: +5 HP','一半机会回 5 格')}</span><small>{t('Otherwise: +0 HP','另一半是清水，不回血')}</small></button>
+        </div>
+        <p className="supply-footnote">{t('One gift per fight. Take your time.','一局只送这一回。')}</p>
+      </> : <div className="supply-reveal" role="status">
+        <ItemIcon kind={match.supply.choice==='safe'?'tea':'elixir'}/>
+        <strong className="heal-number">+{match.supply.heal} {t('HP','格血')}</strong>
+        <p>{match.supply.choice==='safe'?t('A warm cup. A steady hand.','茶还烫着呢。'):match.supply.heal>0?t('Luck is on your side tonight.','有药！这一口，五格血。'):t('Just water this time.','咦？是清水。')}</p>
+        <button data-primary className="pixel-button" onClick={onContinue}>{t('BACK TO THE FIGHT','回去接着打')}</button>
+      </div>}
     </div>
   </div>;
 }
 
-export function Celebration({onSkip}) {
+export function Celebration({onSkip,lang}) {
+  const t=(en,zh)=>localized(lang,en,zh);
   const skip=useRef(null);
   useEffect(()=>{skip.current?.focus({preventScroll:true});},[]);
   return <div className="celebration-overlay">
-    <div className="celebration-heading" role="status"><p className="eyebrow">YOU BROKE ITS READ.</p><h2>CHINATOWN IS SAFE.</h2><p>The lanterns shine again.</p></div>
-    <div className="crowd-cheer cheer-left" aria-hidden="true">THANK YOU!</div><div className="crowd-cheer cheer-right" aria-hidden="true">OUR STREET!</div>
+    <div className="celebration-heading" role="status"><p className="eyebrow">{t('THE MIND READER RETREATS','读心怪逃了')}</p><h2>{t('CHINATOWN IS SAFE.','唐人街守住了。')}</h2><p>{t('The lanterns shine again.','街上的灯笼又亮了。')}</p></div>
+    <div className="crowd-cheer cheer-left" aria-hidden="true">{t('THANK YOU!','多谢女侠！')}</div><div className="crowd-cheer cheer-right" aria-hidden="true">{t('OUR STREET!','守住喽！')}</div>
     <div className="confetti" aria-hidden="true">{Array.from({length:20},(_,i)=><i key={i} style={{left:`${(i*23)%94+3}%`,animationDelay:`${(i%7)*.12}s`,background:['#ffcd69','#eb665b','#a4d9c2'][i%3]}}/>)}</div>
-    <button className="text-button celebration-skip" onClick={onSkip} ref={skip}>See results →</button>
+    <button className="text-button celebration-skip" onClick={onSkip} ref={skip}>{t('See results','看这局战绩')}</button>
   </div>;
 }

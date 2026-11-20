@@ -5,6 +5,14 @@ export function createSound() {
   const context = new Audio();
   context.resume().catch(() => {});
   return {
+    signal() {
+      if (context.state !== 'running') return;
+      const at=context.currentTime, bell=context.createOscillator(), volume=context.createGain();
+      bell.type='sine';bell.frequency.setValueAtTime(660,at);bell.frequency.setValueAtTime(880,at+.045);
+      volume.gain.setValueAtTime(.0001,at);volume.gain.linearRampToValueAtTime(.045,at+.01);
+      volume.gain.exponentialRampToValueAtTime(.0001,at+.15);
+      bell.connect(volume);volume.connect(context.destination);bell.start(at);bell.stop(at+.16);
+    },
     play(blocked, burst) {
       if (context.state !== 'running') return;
       const notes = burst ? [330,440,660] : blocked ? [180,80] : [300,130];
